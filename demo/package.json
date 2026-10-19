@@ -1,0 +1,40 @@
+{
+  "name": "iot-console-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "IoT Deck —— 面向前端开发者的物联网监控台示例项目（教程配套）",
+  "scripts": {
+    "dev": "vite",
+    "server": "node server/index.mjs",
+    "broker": "node server/broker.mjs",
+    "devices": "node server/simulator.mjs",
+    "build": "vue-tsc --noEmit && vite build",
+    "typecheck": "vue-tsc --noEmit && tsc --noEmit -p tsconfig.node.json",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "aedes": "^1.2.0",
+    "echarts": "^6.1.0",
+    "mqtt": "^5.16.1",
+    "pinia": "^4.1.0",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0",
+    "websocket-stream": "^5.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.9.0",
+    "eslint": "^9.39.5",
+    "eslint-plugin-vue": "^9.33.0",
+    "prettier": "^3.9.10",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.4",
+    "vue-tsc": "^3.3.13"
+  }
+}

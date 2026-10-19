@@ -1,0 +1,13 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+
+# 系统文件
+.DS_Store
+
+# 日志
+*.log
