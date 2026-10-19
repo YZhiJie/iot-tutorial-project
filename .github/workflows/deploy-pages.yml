@@ -1,0 +1,58 @@
+# GitHub Pages 部署：IoT Deck 文档站（VitePress）
+# 源码仓库（本仓库，公开）在 push main 时构建文档站，产物推送到部署仓库
+# YZhiJie/iot-tutorial 的 gh-pages 分支。
+# Pages 站点地址：https://yzhijie.github.io/iot-tutorial/
+# 前置条件：
+#   1) 部署仓库 YZhiJie/iot-tutorial 已开启 Pages（Source: gh-pages 分支 / root）；
+#   2) 本仓库 Secret PAGES_TOKEN 为具备该部署仓库写权限的 PAT。
+name: Deploy Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装 pnpm（读 packageManager 字段）
+        uses: pnpm/action-setup@v4
+
+      - name: 安装 Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: 安装依赖（锁定 lockfile）
+        run: pnpm install --frozen-lockfile
+
+      - name: 构建文档站（注入 Pages 子路径 base）
+        run: pnpm docs:build
+        env:
+          DEPLOY_BASE: /iot-tutorial/
+
+      - name: 关闭 Jekyll 处理（保留下划线/点文件）
+        run: touch docs/.vitepress/dist/.nojekyll
+
+      - name: 推送到部署仓库 gh-pages 分支
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PAGES_TOKEN }}
+          external_repository: YZhiJie/iot-tutorial
+          publish_branch: gh-pages
+          publish_dir: docs/.vitepress/dist
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_message: "deploy: ${{ github.event.head_commit.message }}"

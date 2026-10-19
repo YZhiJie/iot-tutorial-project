@@ -1,0 +1,20 @@
+{
+  "name": "iot-tutorial-project",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "IoT Deck —— 面向前端开发者的物联网技术体系化教程（文档站 + 配套 demo）",
+  "packageManager": "pnpm@12.10.1",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "vitepress": "^1.6.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}

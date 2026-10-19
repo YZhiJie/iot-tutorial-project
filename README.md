@@ -1,5 +1,7 @@
 # IoT Deck —— 面向前端开发者的物联网技术体系化教程
 
+> 📖 **在线文档站（VitePress）**：<https://yzhijie.github.io/iot-tutorial/> —— 支持全文搜索、页面导航与移动端阅读；文档的目录约定、写作模板、链接规范与部署流程见 [文档维护指南](./docs/maintenance.md)。
+
 > 一套从入门到生产落地的物联网前端教程：**17 章 / 4 大模块 / 约 9.6 小时**，配套一个浏览器实测通过的可运行监控台项目（Vue 3 + TypeScript + MQTT.js + ECharts）。
 
 教程核心原则：
